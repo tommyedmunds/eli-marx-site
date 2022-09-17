@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { styleReset, Anchor, AppBar } from 'react95';
+import original from 'react95/dist/themes/original';
+import Nav from './components/Nav';
+import NavAppBar from './components/NavAppBar';
+import Start from './components/Start';
+import Box from './components/Box';
+
+const GlobalStyles = createGlobalStyle`
+  ${styleReset}
+
+  body {
+    background-color: ${original.desktopBackground};
+  }
+`;
+
+const App = () => (
+  <div
+    style={{
+      overflowY: 'hidden',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignContent: 'center',
+    }}
+  >
+    <GlobalStyles />
+    <ThemeProvider theme={original}>
+      <Box />
+      <NavAppBar />
+      {/* <Start /> */}
+    </ThemeProvider>
+  </div>
+);
 
 export default App;
